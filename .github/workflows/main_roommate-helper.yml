@@ -15,6 +15,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: 'Create env file'
+        run: |
+          touch .env
+          echo ${{ secrets.DOTENV }} >> .env
+          cat .env
       - uses: actions/checkout@v2
 
       - name: Set up Python version
