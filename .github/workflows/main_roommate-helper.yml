@@ -27,8 +27,13 @@ jobs:
           source venv/bin/activate
           
       - name: Create env file
-        run: |
-          echo ${{ secrets.DOTENV }} > .env
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_DISCORD_TOKEN: ${{secrets.DISCORD_TOKEN}}
+          envkey_OPENWEATHER_KEY: ${{secrets.OPENWEATHER_KEY}}
+          directory: './'
+          file_name: '.env'
+
       
       - name: Install dependencies
         run: pip install -r requirements.txt
