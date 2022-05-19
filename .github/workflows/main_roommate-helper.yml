@@ -66,3 +66,5 @@ jobs:
           app-name: 'roommate-helper'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_70E6256FC1324354816F70E2C4E018E5 }}
+        run: |
+          python main.py
