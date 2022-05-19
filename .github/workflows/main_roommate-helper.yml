@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
       - name: Set up Python version
         uses: actions/setup-python@v1
         with:
@@ -29,7 +30,6 @@ jobs:
         run: |
           touch .env
           echo ${{ secrets.DOTENV }} >> .env
-      - uses: actions/checkout@v2
       
       - name: Install dependencies
         run: pip install -r requirements.txt
