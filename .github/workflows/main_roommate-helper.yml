@@ -15,13 +15,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 'Create env file'
-        run: |
-          touch .env
-          echo ${{ secrets.DOTENV }} >> .env
-          cat .env
-      - uses: actions/checkout@v2
-
       - name: Set up Python version
         uses: actions/setup-python@v1
         with:
@@ -34,7 +27,13 @@ jobs:
       
       - name: Install dependencies
         run: pip install -r requirements.txt
-        
+
+      - name: Create env file
+        run: |
+          touch .env
+          echo ${{ secrets.DOTENV }} >> .env
+      - uses: actions/checkout@v2
+
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       
       - name: Upload artifact for deployment jobs
@@ -66,6 +65,3 @@ jobs:
           app-name: 'roommate-helper'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_70E6256FC1324354816F70E2C4E018E5 }}
-      - name: 'Run'
-        run: |
-          python main.py
