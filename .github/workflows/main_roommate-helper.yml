@@ -36,12 +36,12 @@ jobs:
 
       
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r requirements.txt
+          apt install ffmpeg
 
       - name: Run unit tests
-        run: |
-          
-          python runUnitTests.py
+        run: python runUnitTests.py
       
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
